@@ -8,11 +8,13 @@ import Random from './Random';
 import Order from './Order';
 import Student from './Student';
 import NotFound from './NotFound';
+import Navbar from './Navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/setup" element={<Setup />} />

@@ -1,22 +1,38 @@
 import { useEffect, useState } from 'react';
 
 const Student = () => {
-  const [student, setStudent] = useState();
+  const [students, setStudents] = useState([]);
+  const [luckyOne, setLuckyOne] = useState({
+    id: 0,
+    firstName: "Mike",
+    lastName: "Oxmall"
+  });
+
+  const getData = async () => {
+    await fetch('http://localhost:4000/students')
+    .then(res => res.json())
+    .then(data => {
+      setStudents(data);
+      console.log(data);
+    })
+    .catch(err => console.log(err))
+  }
+
+  const pickLuckyOne = () => {
+    var r = Math.floor(Math.random() * students.length);
+    setLuckyOne(students[r]);
+    console.log(luckyOne)
+  }
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await fetch('http://localhost:4000/students');
-      const data = await response.json();
-      setStudent(data[Math.floor(Math.random() * data.length) + 1]);
-      console.log(student);
-    }
     getData();
   }, []);
 
   return (
     <div>
       <h1>Student</h1>
-      <p>{student.firstName + " " + student.lastName}</p>
+      <p>{luckyOne.firstName + " " + luckyOne.lastName}</p>
+      <button onClick={pickLuckyOne}>Vybrat studenta😈</button>
     </div>
   );
 }
