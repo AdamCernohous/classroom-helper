@@ -14,6 +14,13 @@ function App() {
       <Link to="/order">Order</Link>
       <Link to="/random">Random</Link>
       <Link to="/student">Student</Link>
+      <div>
+        <form>
+          <input type="number" />
+          <input type="number" />
+          <input type="submit" />
+        </form>
+      </div>
     </div>
   );
 }
